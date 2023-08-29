@@ -4,14 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.raulreis.jokenorris.R
 import br.com.raulreis.jokenorris.model.Category
+import br.com.raulreis.jokenorris.presentation.HomePresenter
 import com.xwray.groupie.GroupieAdapter
 
 class HomeFragment : Fragment() {
+
+    private lateinit var progressBar: ProgressBar
+    private lateinit var presenter : HomePresenter
+    val adapter = GroupieAdapter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        presenter = HomePresenter(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,18 +36,31 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        progressBar = view.findViewById(R.id.progressBar)
+
         val rvMain = view.findViewById<RecyclerView>(R.id.rvMain)
         rvMain.layoutManager = LinearLayoutManager(requireContext())
 
-        val adapter = GroupieAdapter()
+        presenter.findAllCategories()
+
         rvMain.adapter = adapter
+    }
 
-        adapter.add(CategoryItem(Category("Categoria 1", 0xFF2df55c)))
-        adapter.add(CategoryItem(Category("Categoria 2", 0xFF00deb8)))
-        adapter.add(CategoryItem(Category("Categoria 3", 0xFF00beff)))
-        adapter.add(CategoryItem(Category("Categoria 4", 0xFF0094ff)))
-        adapter.add(CategoryItem(Category("Categoria 5", 0xFF2458ed)))
-
+    fun showCategories(categories: List<Category>) {
+        val categoriesItem = categories.map { CategoryItem(it) }
+        adapter.addAll(categoriesItem)
         adapter.notifyDataSetChanged()
+    }
+
+    fun showProgress() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    fun hideProgress() {
+        progressBar.visibility = View.GONE
+    }
+
+    fun showFailure(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }
