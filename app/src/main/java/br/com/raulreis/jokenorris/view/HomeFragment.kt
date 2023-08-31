@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.raulreis.jokenorris.R
+import br.com.raulreis.jokenorris.data.CategoryRemoteDataSource
 import br.com.raulreis.jokenorris.model.Category
 import br.com.raulreis.jokenorris.presentation.HomePresenter
 import com.xwray.groupie.GroupieAdapter

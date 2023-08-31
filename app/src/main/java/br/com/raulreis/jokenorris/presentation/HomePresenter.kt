@@ -1,54 +1,42 @@
 package br.com.raulreis.jokenorris.presentation
 
+import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
+import br.com.raulreis.jokenorris.data.CategoryRemoteDataSource
+import br.com.raulreis.jokenorris.data.ListCategoryCallback
 import br.com.raulreis.jokenorris.model.Category
 import br.com.raulreis.jokenorris.view.HomeFragment
 
-class HomePresenter(private val view: HomeFragment) {
+class HomePresenter(
+    private val view: HomeFragment,
+    private val dataSource: CategoryRemoteDataSource = CategoryRemoteDataSource()
+    ) : ListCategoryCallback {
 
     fun findAllCategories() {
         view.showProgress()
-        fakeRequest()
+        dataSource.findAllCategories(this)
     }
 
-    fun onSuccess(response: List<String>) {
-        /*
-        val categories = mutableListOf<CategoryItem>()
+    override fun onSuccess(response: List<String>) {
+        val start = 40.0f // H - matiz
+        val end = 190.0f
+        val diff = (end - start) / response.size
 
-        for (category in response) {
-            categories.add(CategoryItem(category))
+
+        val categories = response.mapIndexed{ index, s ->
+            val hsv = floatArrayOf(start + (diff*index),100.0f, 100.0f)
+            Category(s, Color.HSVToColor(hsv).toLong())
         }
-         */
-
-        val categories = response.map{ Category(it, 0xFFFF0000) }
 
         view.showCategories(categories)
     }
 
-    fun onError(message: String) {
+    override fun onError(message: String) {
         view.showFailure(message)
     }
 
-    fun onComplete() {
+    override fun onComplete() {
         view.hideProgress()
-    }
-    // Simular uma requisição HTTP
-    private fun fakeRequest() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            val response = arrayListOf(
-                "Categoria 1",
-                "Categoria 2",
-                "Categoria 3",
-                "Categoria 4",
-                "Categoria 5",
-            )
-
-            // Aqui a lista já está pronta (response)
-            onSuccess(response)
-            //onError("FALHA NA CONEXÃO. TENTE NOVAMENTE MAIS TARDE!")
-
-            onComplete()
-        }, 4000)
     }
 }
