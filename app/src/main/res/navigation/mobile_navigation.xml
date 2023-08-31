@@ -9,7 +9,11 @@
         android:id="@+id/navHome"
         android:name="br.com.raulreis.jokenorris.view.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navHome_to_navJoke"
+            app:destination="@id/navJoke" />
+    </fragment>
 
     <fragment
         android:id="@+id/navDay"
@@ -22,6 +26,11 @@
         android:name="br.com.raulreis.jokenorris.AboutFragment"
         android:label="@string/menu_about"
         tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/navJoke"
+        android:name="br.com.raulreis.jokenorris.view.JokeFragment"
+        tools:layout="@layout/fragment_joke" />
 
 
 </navigation>

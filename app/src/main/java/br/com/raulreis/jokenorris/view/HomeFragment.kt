@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.raulreis.jokenorris.R
-import br.com.raulreis.jokenorris.data.CategoryRemoteDataSource
 import br.com.raulreis.jokenorris.model.Category
 import br.com.raulreis.jokenorris.presentation.HomePresenter
 import com.xwray.groupie.GroupieAdapter
@@ -42,9 +42,17 @@ class HomeFragment : Fragment() {
         val rvMain = view.findViewById<RecyclerView>(R.id.rvMain)
         rvMain.layoutManager = LinearLayoutManager(requireContext())
 
-        presenter.findAllCategories()
-
+        if (adapter.itemCount == 0) {
+            presenter.findAllCategories()
+        }
         rvMain.adapter = adapter
+        
+        adapter.setOnItemClickListener { item, view ->
+            val bundle = Bundle()
+            val categoryName = (item as CategoryItem).category.name
+            bundle.putString(JokeFragment.CATEGORY_KEY, categoryName)
+            findNavController().navigate(R.id.action_navHome_to_navJoke, bundle)
+        }
     }
 
     fun showCategories(categories: List<Category>) {
