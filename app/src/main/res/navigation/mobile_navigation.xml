@@ -19,7 +19,7 @@
         android:id="@+id/navDay"
         android:name="br.com.raulreis.jokenorris.JokeDayFragment"
         android:label="@string/menu_joke_day"
-        tools:layout="@layout/fragment_joke_day" />
+        tools:layout="@layout/fragment_joke" />
 
     <fragment
         android:id="@+id/navAbout"

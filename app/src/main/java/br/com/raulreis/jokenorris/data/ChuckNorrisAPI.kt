@@ -13,4 +13,7 @@ interface ChuckNorrisAPI {
     @GET("jokes/random")
     fun findBy(@Query("category") categoryName: String, @Query("apiKey") apiKey : String = HTTPClient.API_KEY) : Call<Joke>
 
+    @GET("jokes/random")
+    fun getJoke(@Query("apiKey") apiKey : String = HTTPClient.API_KEY) : Call<Joke>
+
 }

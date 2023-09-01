@@ -15,10 +15,11 @@ import androidx.fragment.app.Fragment
 import br.com.raulreis.jokenorris.R
 import br.com.raulreis.jokenorris.model.Joke
 import br.com.raulreis.jokenorris.presentation.JokePresenter
+import br.com.raulreis.jokenorris.presentation.JokesFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 
-class JokeFragment : Fragment() {
+class JokeFragment : Fragment(), JokesFragment {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var textView: TextView
@@ -67,20 +68,20 @@ class JokeFragment : Fragment() {
         presenter.findBy(categoryName)
     }
 
-    fun showJoke(joke: Joke) {
+    override fun showJoke(joke: Joke) {
         textView.text = joke.text
         Picasso.get().load(joke.iconUrl).into(imgJoke)
     }
 
-    fun showProgress() {
+    override fun showProgress() {
         progressBar.visibility = View.VISIBLE
     }
 
-    fun hideProgress() {
+    override fun hideProgress() {
         progressBar.visibility = View.GONE
     }
 
-    fun showFailure(message: String) {
+    override fun showFailure(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }
