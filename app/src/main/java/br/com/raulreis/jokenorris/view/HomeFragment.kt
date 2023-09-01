@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
         }
         rvMain.adapter = adapter
         
-        adapter.setOnItemClickListener { item, view ->
+        adapter.setOnItemClickListener { item, _ ->
             val bundle = Bundle()
             val categoryName = (item as CategoryItem).category.name
             bundle.putString(JokeFragment.CATEGORY_KEY, categoryName)
@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
     fun showCategories(categories: List<Category>) {
         val categoriesItem = categories.map { CategoryItem(it) }
         adapter.addAll(categoriesItem)
-        adapter.notifyDataSetChanged()
+         adapter.notifyDataSetChanged()
     }
 
     fun showProgress() {
