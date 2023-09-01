@@ -1,9 +1,11 @@
 package br.com.raulreis.jokenorris.view
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -26,6 +28,7 @@ class JokeFragment : Fragment() {
 
     companion object {
         const val CATEGORY_KEY = "category"
+        const val COLOR_KEY = "color"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,11 +48,17 @@ class JokeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val categoryName = arguments?.getString(CATEGORY_KEY)!!
+        val color = arguments?.getLong(COLOR_KEY)!!
+
+
 
         activity?.findViewById<Toolbar>(R.id.toolbar)?.title = categoryName
         progressBar = view.findViewById(R.id.progressJoke)
         textView = view.findViewById(R.id.txvJoke)
         imgJoke = view.findViewById(R.id.imgJoke)
+
+
+        view.findViewById<FrameLayout>(R.id.containerImg).setBackgroundColor(color.toInt())
 
         view.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             presenter.findBy(categoryName)

@@ -50,7 +50,9 @@ class HomeFragment : Fragment() {
         adapter.setOnItemClickListener { item, _ ->
             val bundle = Bundle()
             val categoryName = (item as CategoryItem).category.name
+            val color = (item as CategoryItem).category.bgColor
             bundle.putString(JokeFragment.CATEGORY_KEY, categoryName)
+            bundle.putLong(JokeFragment.COLOR_KEY, color)
             findNavController().navigate(R.id.action_navHome_to_navJoke, bundle)
         }
     }
