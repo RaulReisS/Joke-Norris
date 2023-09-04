@@ -1,4 +1,4 @@
-package br.com.raulreis.jokenorris
+package br.com.raulreis.jokenorris.view
 
 import android.graphics.Color
 import android.os.Bundle
@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import br.com.raulreis.jokenorris.R
 import br.com.raulreis.jokenorris.model.Joke
 import br.com.raulreis.jokenorris.presentation.JokePresenter
 import br.com.raulreis.jokenorris.presentation.JokesFragment

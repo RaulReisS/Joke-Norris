@@ -17,13 +17,13 @@
 
     <fragment
         android:id="@+id/navDay"
-        android:name="br.com.raulreis.jokenorris.JokeDayFragment"
+        android:name="br.com.raulreis.jokenorris.view.JokeDayFragment"
         android:label="@string/menu_joke_day"
         tools:layout="@layout/fragment_joke" />
 
     <fragment
         android:id="@+id/navAbout"
-        android:name="br.com.raulreis.jokenorris.AboutFragment"
+        android:name="br.com.raulreis.jokenorris.view.AboutFragment"
         android:label="@string/menu_about"
         tools:layout="@layout/fragment_about" />
 

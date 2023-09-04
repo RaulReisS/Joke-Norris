@@ -7,4 +7,8 @@
     <string name="unknown_error">Unknown error</string>
     <string name="intern_error">Intern error</string>
     <string name="joke_not_found">Joke not found</string>
+    <string name="app_description">Carlos Ray "Chuck" Norris (born March 10, 1940) is an American martial artist and actor. After serving in the United States Air Force, Norris won many martial arts championships and later founded his own discipline Chun Kuk Do. Shortly after, in Hollywood, Norris trained celebrities in martial arts. Norris took the starring role in the action film Breaker! Breaker! (1977), which turned a profit. His second lead Good Guys Wear Black (1978) became a hit, and he soon became a popular action film star</string>
+    <string name="wiki_norris">https://en.wikipedia.org/wiki/Chuck_Norris</string>
+    <string name="github" translatable="false">https://github.com/RaulReisS</string>
+    <string name="build_version">Version (%1$s)</string>
 </resources>
